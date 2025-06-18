@@ -24,7 +24,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install dependencies
-      run: npm install --save-dev webpack-cli # faster & safer than `npm install` in CI
+      run: npm install --save-dev webpack webpack-cli
+     # faster & safer than `npm install` in CI
 
     - name: Build React project
       run: |
