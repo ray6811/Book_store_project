@@ -10,30 +10,36 @@ on:
 
 jobs:
   build:
+    name: React Build
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository
-      - name: Checkout code
+      - name: 📥 Checkout repository
         uses: actions/checkout@v3
 
-      # Set up Node.js (you can specify your Node.js version)
-      - name: Setup Node.js
+      - name: 🟢 Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
+          cache: 'npm'
 
-      # Install dependencies
-      - name: Install dependencies
-        run: npm install
+      - name: 📦 Install dependencies
+        run: npm ci
 
-      # Build the React app
-      - name: Build React app
+      - name: ⚙️ Lint (optional)
+        run: |
+          if npm run lint; then
+            echo "Linting passed."
+          else
+            echo "Linting failed!" && exit 1
+          fi
+        continue-on-error: true
+
+      - name: 🔨 Build the React app
         run: npm run build
 
-      # Optionally: Upload build artifacts (optional, useful for deployments)
-      - name: Upload production build
+      - name: 📤 Upload production build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: build
+          name: react-build
           path: build/
