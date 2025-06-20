@@ -32,7 +32,6 @@ jobs:
       run:  mvn clean install
 
     - name: Upload JAR/WAR artifacts
-      working-directory: bookstore/backend
       uses: actions/upload-artifact@v4
       with:
         name: bookstore-artifacts
