@@ -30,3 +30,9 @@ jobs:
     - name: Build with Maven
       working-directory: bookstore/backend
       run:  mvn clean install
+
+    - name: Upload JAR/WAR artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: bookstore-artifacts
+        path: target/*.jar
