@@ -14,4 +14,4 @@ COPY --from=build /app/target/ .
 
 EXPOSE 8000
 
-ENTRYPOINT ["java", "-jar", "*.jar"]
+ENTRYPOINT ["java", "-jar", "bookstore-0.0.1-SNAPSHOT.jar"]
