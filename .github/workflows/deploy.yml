@@ -1,4 +1,4 @@
-name: Build React App
+name: Build and Push Docker Image
 
 on:
   push:
@@ -19,14 +19,23 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22  # or your preferred version
+          node-version: 22
 
-      - name: Build the React app
-        run: docker build -t bookstore .
+      - name: Build the React app Docker image
+        run: docker build -t ray6811/bookstore:latest .
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
         with:
-          name: react-build
-          path: build/
+          username: ${{ ray6811 }}
+          password: ${{ dckr_pat_N7IP1o7Ji_f9I4y6l7tXHSJ8YlQ }}
 
+      - name: Push Docker image to Docker Hub
+        run: docker push ray6811/bookstore:latest
+
+      # (Optional) Upload build artifacts if you still want to:
+      # - name: Upload build artifacts
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: react-build
+      #     path: build/
