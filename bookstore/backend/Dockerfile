@@ -5,7 +5,7 @@ FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
 # Copy the built JAR file from the local build context to the container
-COPY bookstore/backend/ .
+COPY . .
 RUN mvn clean install
 COPY target/ .
 
