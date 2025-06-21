@@ -10,8 +10,8 @@ FROM eclipse-temurin:17-jre-alpine
 
 WORKDIR /app
 # Copy only the built jar from the build image
-COPY --from=build /app/target/ .
+COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8000
 
-ENTRYPOINT ["java", "-jar", "bookstore-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
