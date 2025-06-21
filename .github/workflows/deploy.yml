@@ -22,7 +22,7 @@ jobs:
           node-version: 22  # or your preferred version
 
       - name: Build the React app
-        #run: docker build -t bookstore .
+        run: docker build -t bookstore .
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
