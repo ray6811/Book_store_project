@@ -5,7 +5,9 @@ FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
 # Copy the built JAR file from the local build context to the container
-COPY bookstore/backend/target/ .
+COPY bookstore/backend/ .
+RUN mvn clean install
+COPY target/ .
 
 # Expose the application's port (change if your app uses a different port)
 EXPOSE 8080
